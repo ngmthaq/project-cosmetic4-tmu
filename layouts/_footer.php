@@ -14,10 +14,10 @@
                 <ul class="list">
                     <h5>Danh mục</h5>
                     <li><a href="index.php">Trang chủ</a></li>
-                    <li><a href="#">Bài viết</a></li>
-                    <li><a href="./about.php">Thông tin</a></li>
-                    <li><a href="./contact.php">Liên hệ</a></li>
-                    <li><a href="./login.php">Đăng nhập</a></li>
+                    <li><a href="post.php">Bài viết</a></li>
+                    <li><a href="about.php">Thông tin</a></li>
+                    <li><a href="contact.php">Liên hệ</a></li>
+                    <li><a href="login.php">Đăng nhập</a></li>
                 </ul>
             </div>
             <div class="col-3">
@@ -36,7 +36,12 @@
                 </div>
             </div>
             <div class="col-12 text-center text-light pb-3">
-                <small>Thiết kế và triển khai website</small>
+                <p>
+                    <small>
+                        Đây là dự án của nhóm sinh viên khoa hệ thống thông tin quản lý và thương mại điện tử
+                        trường Đại học Thương Mại phục vụ cho bộ môn Thiết kế và triển khai website.
+                    </small>
+                </p>
             </div>
         </div>
     </div>

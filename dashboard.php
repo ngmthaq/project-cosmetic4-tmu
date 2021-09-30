@@ -3,8 +3,6 @@
 
 <?php
 
-$site = 'about';
-
 ?>
 
 <!DOCTYPE html>
@@ -23,19 +21,15 @@ $site = 'about';
 </head>
 
 <body>
-    <div class="main">
-        <!-- Liên kết file header -->
-        <?php require_once('./layouts/_header.php') ?>
-
-        <!-- Nội dung chính -->
-        <div class="content">
-            <div class="container">
-                <?php require_once('./layouts/_about.php') ?>
+    <!-- Nội dung chính -->
+    <div class="content">
+        <div class="container">
+            <div class="row bg-light">
+                <div class="col-12">
+                    
+                </div>
             </div>
         </div>
-
-        <!-- Liên kết file footer -->
-        <?php require_once('./layouts/_footer.php') ?>
     </div>
     <!-- Liên kết JS -->
     <script src="./public/vendors/jquery/jquery-3.6.0.min.js"></script>

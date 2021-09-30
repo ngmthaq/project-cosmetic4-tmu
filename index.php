@@ -1,6 +1,12 @@
 <!-- Liên kết file cài đặt để kết nối đến database -->
 <?php require_once('./config.php') ?>
 
+<?php
+
+$site = 'index';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +34,7 @@
                     <div class="col-12 bg-light">
                         <div class="quote">
                             <p><small>LET'S BEAUTY YOURSELF WITH</small></p>
-                            <h2>COSMETIC4</h2>
+                            <h2 style="color: var(--main-color);">COSMETIC4</h2>
                         </div>
                     </div>
                 </div>
@@ -40,7 +46,56 @@
                                     BÀI VIẾT
                                 </p>
                                 <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="#">Tất cả bài viết</a>
+                                <a href="posts.php">Tất cả bài viết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-3 bg-light" style="border-bottom: solid 2px var(--main-color);">
+                    <div class="col-12">
+                        <h5 class="text-center py-3">BÀI VIẾT MỚI</h5>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
+                            <div class="post-content">
+                                <p class="category-name">
+                                    BÀI VIẾT
+                                </p>
+                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
+                                <a href="#">Xem bài viết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
+                            <div class="post-content">
+                                <p class="category-name">
+                                    BÀI VIẾT
+                                </p>
+                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
+                                <a href="#">Xem bài viết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
+                            <div class="post-content">
+                                <p class="category-name">
+                                    BÀI VIẾT
+                                </p>
+                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
+                                <a href="#">Xem bài viết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
+                            <div class="post-content">
+                                <p class="category-name">
+                                    BÀI VIẾT
+                                </p>
+                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
+                                <a href="#">Xem bài viết</a>
                             </div>
                         </div>
                     </div>

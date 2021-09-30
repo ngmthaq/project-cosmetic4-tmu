@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.post.post-md {
+    padding-bottom: 350px;
+}
+
 .post-content {
     position: absolute;
     text-align: center;
@@ -48,7 +52,7 @@
 }
 
 .section {
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
 .about h5, .about p {
@@ -77,7 +81,31 @@
     color: var(--main-color);
 }
 
+.img-box {
+    height: 600px;
+}
+
 .map {
     height: 400px;
     margin: 20px 0;
+}
+
+.card-img-box {
+    height: 300px;
+}
+
+.card-title a {
+    height: 70px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.card-text {
+    height: 70px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
