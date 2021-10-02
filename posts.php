@@ -3,16 +3,17 @@
 
 <?php
 
-$site = 'posts';
 $condition = '';
 $pageTitle = 'Tất cả bài viết';
+$site = 0;
 
 if (isset($_GET['id'])) {
     $condition = ' WHERE category_id = ' . $_GET['id'];
-    $sql = "SELECT `name` FROM `categories` WHERE id = " . $_GET['id'];
-    $categoryName = $conn->query($sql);
-    $categoryName = $categoryName->fetch_assoc();
-    $pageTitle = $categoryName['name'];
+    $sql = "SELECT * FROM `categories` WHERE id = " . $_GET['id'];
+    $category = $conn->query($sql);
+    $category = $category->fetch_assoc();
+    $pageTitle = $category['name'];
+    $site = $category['id'];
 }
 
 if (isset($_POST['search'])) {
@@ -60,14 +61,94 @@ if ($posts) {
                             <strong><?php echo $pageTitle; ?></strong>
                         </p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="#" style="color: var(--main-color);">
+                                    <a href="post.php" style="color: var(--main-color);">
+                                        Card title
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                            </div>
+                        </div>
+                    </div><div class="col-4">
+                        <div class="card mb-3">
+                            <div class="card-img-box">
+                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="post.php" style="color: var(--main-color);">
+                                        Card title
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                            </div>
+                        </div>
+                    </div><div class="col-4">
+                        <div class="card mb-3">
+                            <div class="card-img-box">
+                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="post.php" style="color: var(--main-color);">
+                                        Card title
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                            </div>
+                        </div>
+                    </div><div class="col-4">
+                        <div class="card mb-3">
+                            <div class="card-img-box">
+                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="post.php" style="color: var(--main-color);">
+                                        Card title
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                            </div>
+                        </div>
+                    </div><div class="col-4">
+                        <div class="card mb-3">
+                            <div class="card-img-box">
+                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="post.php" style="color: var(--main-color);">
+                                        Card title
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                            </div>
+                        </div>
+                    </div><div class="col-4">
+                        <div class="card mb-3">
+                            <div class="card-img-box">
+                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="post.php" style="color: var(--main-color);">
                                         Card title
                                     </a>
                                 </h5>

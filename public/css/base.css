@@ -20,7 +20,7 @@ a {
 
 /* Body */
 
-.main {
+body {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0.5)), url('../images/body.jpg') !important;
     background-size: cover;
     background-position: top center;
@@ -62,17 +62,11 @@ header .container .row {
     position: relative;
 }
 
-.category-box {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    background-color: #fff;
-    width: 200%;
-    z-index: 1;
+.category-box ul {
     list-style: none;
-    box-shadow: 2px 4px 4px -2px #000;
-    border-radius: 2px;
-    display: none;
+    background-color: antiquewhite;
+    padding: 12px;
+    border-radius: 3px;
 }
 
 .category-box a {
@@ -80,6 +74,10 @@ header .container .row {
     padding: 5px 10px;
     display: block;
     text-transform: uppercase;
+}
+
+.category-box a:hover {
+    color: var(--main-color);
 }
 
 /* Navigation */
@@ -96,7 +94,7 @@ header .container .row {
 }
 
 .navigation>ul>li>a {
-    margin-right: 18px;
+    margin-right: 12px;
     color: white;
     text-transform: uppercase;
     font-size: 15px;

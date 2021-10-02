@@ -62,7 +62,7 @@ $site = 'index';
                                     BÀI VIẾT
                                 </p>
                                 <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="#">Xem bài viết</a>
+                                <a href="post.php">Xem bài viết</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ $site = 'index';
                                     BÀI VIẾT
                                 </p>
                                 <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="#">Xem bài viết</a>
+                                <a href="post.php">Xem bài viết</a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ $site = 'index';
                                     BÀI VIẾT
                                 </p>
                                 <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="#">Xem bài viết</a>
+                                <a href="post.php">Xem bài viết</a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ $site = 'index';
                                     BÀI VIẾT
                                 </p>
                                 <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="#">Xem bài viết</a>
+                                <a href="post.php">Xem bài viết</a>
                             </div>
                         </div>
                     </div>
