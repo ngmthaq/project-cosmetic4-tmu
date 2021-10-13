@@ -1,7 +1,7 @@
 <div class="row" style="border-bottom: solid 2px var(--main-color);">
     <div class="col-12 bg-light">
         <div class="about section">
-            <a href="../about.php">
+            <a href="about.php">
                 <h5>COSMETIC4</h5>
             </a>
             <blockquote class="blockquote">

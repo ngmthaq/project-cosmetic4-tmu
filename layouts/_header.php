@@ -1,12 +1,12 @@
 <?php
 
-// câu lệnh sql lấy dữ liệu
+// Câu lệnh sql lấy dữ liệu
 $sql = "SELECT * FROM categories";
 
 // Thực hiện câu lệnh sql và gán giá trị vào biến $categories
 $categories = $conn->query($sql);
 if ($categories) {
-    // Chuyển dữ liệu sang mảng
+    // Chuyển dữ liệu sang mảng vì php đọc dạng mảng
     $categories = $categories->fetch_all(MYSQLI_ASSOC);
 }
 
@@ -31,7 +31,9 @@ if ($categories) {
                             <!-- Foreach: Lấy dữ liệu trong mảng categories để in ra trang web -->
                             <?php foreach ($categories as $category) : ?>
                                 <li class="category-posts">
-                                    <a href="posts.php?id=<?php echo $category['id'] ?>" class="<?php echo ($site == $category['id'] ? 'active' : '') ?>"><?php echo $category['name'] ?></a>
+                                    <a href="posts.php?id=<?php echo $category['id'] ?>" class="<?php echo ($site == $category['id'] ? 'active' : '') ?>">
+                                        <?php echo $category['name'] ?>
+                                    </a>
                                 </li>
                             <?php endforeach; ?>
                             <li><a href="about.php" class="<?php echo ($site == 'about') ? 'active' : '' ?>">Thông tin</a></li>

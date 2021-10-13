@@ -24,33 +24,37 @@
     </div>
     <div class="col-6 bg-light">
         <p class="my-3"><strong>Để lại lời nhắn cho chúng tôi</strong></p>
-        <form action="" method="post">
+        <form action="" method="post" id="contact-form">
             <div class="form-row">
                 <div class="form-group col-6">
                     <label for="first-name">Họ</label>
-                    <input type="text" name="first_name" id="first-name" class="form-control" placeholder="Nguyen" required>
+                    <input type="text" name="first_name" id="first-name" class="form-control" placeholder="Nguyen">
+                    
                 </div>
                 <div class="form-group col-6">
                     <label for="last-name">Tên</label>
-                    <input type="text" name="last_name" id="last-name" class="form-control" placeholder="An" required>
+                    <input type="text" name="last_name" id="last-name" class="form-control" placeholder="An">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com" required>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="subject">Tiêu đề</label>
-                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Feedback..." required>
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Feedback...">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="content">Nội dung</label>
-                    <textarea name="content" id="content" cols="30" rows="2" class="form-control" required></textarea>
+                    <textarea name="content" id="content" cols="30" rows="2" class="form-control"></textarea>
+                </div>
+                <div class="form-group col-12">
+                    <small style="color: red;" id="error"></small>
                 </div>
             </div>
             <div class="form-row">

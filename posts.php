@@ -7,20 +7,30 @@ $condition = '';
 $pageTitle = 'Tất cả bài viết';
 $site = 0;
 
+// http://localhost/project/beauty/posts.php?id=2
+// $_GET['id] = ?id => 2
 if (isset($_GET['id'])) {
     $condition = ' WHERE category_id = ' . $_GET['id'];
+    
+    // Câu lệnh lấy dữ liệu từ bảng categories
     $sql = "SELECT * FROM `categories` WHERE id = " . $_GET['id'];
     $category = $conn->query($sql);
-    $category = $category->fetch_assoc();
+    $category = $category->fetch_assoc(); // fetch_assoc ~ fetch_all
+
+    // Lấy tên của category có id tương ứng
     $pageTitle = $category['name'];
     $site = $category['id'];
 }
 
+// $_POST['search'] = giá trị trong ô tìm kiếm
 if (isset($_POST['search'])) {
     $condition = ' WHERE posts.title LIKE %' . $_POST['search'] . '%';
     $pageTitle = 'Tất cả bài viết có kết quả tương ứng với từ khoá "' . $_POST['search'] . '"';
 }
 
+// Lấy tất cả thông tin của bảng posts, cột name của categories và cột name của bảng users với điều kiện
+// category_id = $_GET['id] TH_1
+// title gần giống với $_POST['search] TH_2
 $sql = 'SELECT `posts`.*, `categories`.`name` AS `category_name`, `users`.`name` AS `user_name` FROM `posts` 
     INNER JOIN `categories` ON `posts`.`category_id` = `categories`.`id`
     INNER JOIN `users` ON `posts`.`user_id` = `users`.`id`' . $condition;
@@ -39,7 +49,7 @@ if ($posts) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title>Bài viết</title>
     <!-- Liên kết CSS -->
     <link rel="stylesheet" href="./public/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./public/vendors/fontawesome/css/all.min.css">
@@ -77,7 +87,8 @@ if ($posts) {
                                 </p>
                             </div>
                         </div>
-                    </div><div class="col-4">
+                    </div>
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
@@ -93,7 +104,8 @@ if ($posts) {
                                 </p>
                             </div>
                         </div>
-                    </div><div class="col-4">
+                    </div>
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
@@ -109,7 +121,8 @@ if ($posts) {
                                 </p>
                             </div>
                         </div>
-                    </div><div class="col-4">
+                    </div>
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
@@ -125,7 +138,8 @@ if ($posts) {
                                 </p>
                             </div>
                         </div>
-                    </div><div class="col-4">
+                    </div>
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
@@ -141,7 +155,8 @@ if ($posts) {
                                 </p>
                             </div>
                         </div>
-                    </div><div class="col-4">
+                    </div>
+                    <div class="col-4">
                         <div class="card mb-3">
                             <div class="card-img-box">
                                 <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
