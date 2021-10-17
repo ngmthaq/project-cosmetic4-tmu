@@ -3,6 +3,40 @@
 
 <?php
 
+// Nếu đã đăng nhập thì chuyển qua trang dashboard
+if (isset($_SESSION['user'])) {
+    header('location: dashboard.php');
+}
+
+// Lấy dữ liệu ngườI dùng
+$sql = "SELECT * FROM users";
+$users = $conn->query($sql);
+$users = $users->fetch_all(MYSQLI_ASSOC);
+
+// Nếu nhấn nút đăng nhập
+if (isset($_POST['login'])) {
+    // Lấy username và password người dùng vừa gửi từ form lên
+    $userName = $_POST['user_name'];
+    $password = $_POST['password'];
+
+    // Chạy qua từ tài khoản trên csdl
+    foreach ($users as $user) {
+        // Kiểm tra username
+        if ($userName == $user['user_name']) {
+            // Kiểm tra password
+            if ($password == $user['password']) {
+                // Lưu dữ liệu đăng nhậP của người dùng
+                $_SESSION['user'] = $user['id'];
+                // Chuyển hướng
+                header('location: dashboard.php');
+            }
+        }
+    }
+
+    // Nếu ko thấy tài khoản trùng khớp thì báo lỗi
+    $err = 'Sai tài khoản hoặc mật khẩu';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +65,7 @@
                 </div>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-center">
-                <form action="" method="post" style="width: 400px;">
+                <form action="" method="post" style="width: 400px;" id="login-form">
                     <p style="color: var(--main-color)" class="text-center">
                         <strong>ĐĂNG NHẬP</strong>
                     </p>
@@ -42,9 +76,13 @@
                     <div class="form-group">
                         <label for="password">Mật khẩu:</label>
                         <input type="password" name="password" id="password" class="form-control form-control-sm">
+                        <small class="text-danger" id="login-form-err">
+                            <!-- Hiển thị lỗi -->
+                            <?php echo (isset($err)) ? $err : "" ?>
+                        </small>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-sm btn-primary">Đăng nhập</button>
+                        <button type="submit" name="login" class="btn btn-sm btn-primary">Đăng nhập</button>
                         <a href="index.php" class="btn btn-sm btn-secondary">Quay lại</a>
                     </div>
                 </form>

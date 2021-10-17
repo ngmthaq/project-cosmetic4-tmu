@@ -3,6 +3,48 @@
 
 <?php
 
+// Nếu người dùng chưa đăng nhập thì không đƯợc truy cập trang này và chuyển hướng về trang login
+if (!$_SESSION['user']) {
+    header('location: login.php');
+}
+
+// Lấy thông tin danh mục
+$categorySql = "SELECT * FROM categories";
+$categories = $conn->query($categorySql);
+$categories = $categories->fetch_all(MYSQLI_ASSOC);
+
+// Nếu người dùng nhấn nút thêm bài viết
+if (isset($_POST['post'])) {
+    // Lấy thông tin người dùng nhập trong form
+    $categoryId = $_POST['category_id'];
+    $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
+    $mainParagraph = $_POST['main_paragraph'];
+    $image = $_POST['image'];
+    $userId = $_SESSION['user'];
+
+    // THay đổi ký tự đặc biệt
+    $title = str_replace("'", "\'",  $title);
+    $subtitle = str_replace("'", "\'",  $subtitle);
+    $mainParagraph = str_replace("'", "\'",  $mainParagraph);
+
+    // SQL
+    $sql = "INSERT INTO `posts` (`title`, `subtitle`, `image`, `main_paragraph`, `user_id`, `category_id`) 
+    VALUES ('$title', '$subtitle', '$image', '$mainParagraph', '$userId', '$categoryId')";
+
+    // Thêm dữ liệu vào csdl
+    if ($conn->query($sql)) {
+        header('location: dashboard.php#posts');
+    }
+
+    // Nếu không thêm đƯợc thì hiện lỗi
+    $err = 'Đăng bài không thành công, xin vui lòng thử lại';
+}
+
+$sqlPosts = 'SELECT * FROM posts';
+$posts = $conn->query($sqlPosts);
+$posts = $posts->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +68,24 @@
         <div class="container">
             <div class="row bg-light">
                 <div class="col-12">
-                    <div class="my-3">
-                        <a href="index.php" class="btn btn-sm btn-outline-dark">&lt; Trang chủ</a>
+                    <div class="my-3 d-flex justify-content-between">
+                        <span>
+                            <a href="index.php" class="btn btn-sm btn-outline-dark">Trang chủ</a>
+                            <a href="logout.php" class="btn btn-sm btn-outline-danger">Đăng xuất</a>
+                        </span>
                     </div>
                     <hr>
-                    <form action="" method="GET">
+                    <form action="" method="POST" id="post">
                         <div class="form-group">
                             <h5 class="my-3">Thêm bài viết</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Danh mục</label>
+                            <select name="category_id" id="category" class="form-control">
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="title">Tiêu đề</label>
@@ -43,16 +96,23 @@
                             <input type="text" name="subtitle" id="subtitle" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="content">Nội dung</label>
-                            <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+                            <label for="image">Ảnh bìa</label>
+                            <input type="text" name="image" id="image" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-sm btn-outline-primary">Đăng bài</button>
+                        <div class="form-group">
+                            <label for="main-paragraph">Nội dung</label>
+                            <textarea name="main_paragraph" id="main-paragraph" class="form-control" cols="30" rows="10"></textarea>
+                            <small class="text-danger" id="err">
+                                <?php echo $err ?? '' ?>
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-outline-primary" name="post">Đăng bài</button>
                     </form>
                 </div>
                 <div class="col-12 my-3">
                     <hr>
                     <h5 class="my-3">Danh sách bài viết</h5>
-                    <table class="table">
+                    <table class="table" id="posts">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" class="id-col">ID</th>
@@ -62,36 +122,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                                <td scope="row">1</td>
-                                <td class="title-content">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                    Iure, quas. Voluptates voluptatem qui ex deleniti, 
-                                    pariatur magnam enim eius esse mollitia cupiditate eos? 
-                                    Vero dolorum odio doloremque consequatur ipsum? Ratione.
-                                </td>
-                                <td>01/10/2021</td>
-                                <td>
-                                    <a href="./post.php" class="btn btn-sm btn-outline-info">Xem</a>
-                                    <a href="./edit.php" class="btn btn-sm btn-outline-warning">Sửa</a>
-                                    <a href="./delete.php" class="btn btn-sm btn-outline-danger">Xoá</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">2</td>
-                                <td class="title-content">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                    Iure, quas. Voluptates voluptatem qui ex deleniti, 
-                                    pariatur magnam enim eius esse mollitia cupiditate eos? 
-                                    Vero dolorum odio doloremque consequatur ipsum? Ratione.
-                                </td>
-                                <td>02/10/2021</td>
-                                <td>
-                                    <a href="./post.php" class="btn btn-sm btn-outline-info">Xem</a>
-                                    <a href="./edit.php" class="btn btn-sm btn-outline-warning">Sửa</a>
-                                    <a href="./delete.php" class="btn btn-sm btn-outline-danger">Xoá</a>
-                                </td>
-                            </tr>
+                            <?php if (count($posts) > 0) : ?>
+                                <?php foreach ($posts as $post) : ?>
+                                    <tr>
+                                        <td scope="row">
+                                            <?php echo $post['id'] ?>
+                                        </td>
+                                        <td class="title-content">
+                                            <?php echo $post['title'] ?>
+                                        </td>
+                                        <td><?php echo $post['created_at'] ?></td>
+                                        <td>
+                                            <a href="./post.php?id=<?php echo $post['id'] ?>" class="btn btn-sm btn-outline-info">Xem</a>
+                                            <a href="./edit.php?id=<?php echo $post['id'] ?>" class="btn btn-sm btn-outline-warning">Sửa</a>
+                                            <a href="./delete.php?id=<?php echo $post['id'] ?>" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-outline-danger">Xoá</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                     <hr>
@@ -106,7 +154,7 @@
     <script src="./public/vendors/ckedior/ckeditor/ckeditor.js"></script>
     <script src="./public/js/main.js?v=<?php echo time(); ?>"></script>
     <script>
-        CKEDITOR.replace('content');
+        CKEDITOR.replace('main_paragraph');
     </script>
 </body>
 

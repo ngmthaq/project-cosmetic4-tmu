@@ -11,7 +11,7 @@ $site = 0;
 // $_GET['id] = ?id => 2
 if (isset($_GET['id'])) {
     $condition = ' WHERE category_id = ' . $_GET['id'];
-    
+
     // Câu lệnh lấy dữ liệu từ bảng categories
     $sql = "SELECT * FROM `categories` WHERE id = " . $_GET['id'];
     $category = $conn->query($sql);
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
 
 // $_POST['search'] = giá trị trong ô tìm kiếm
 if (isset($_POST['search'])) {
-    $condition = ' WHERE posts.title LIKE %' . $_POST['search'] . '%';
+    $condition = ' WHERE posts.title LIKE "%' . $_POST['search'] . '%"';
     $pageTitle = 'Tất cả bài viết có kết quả tương ứng với từ khoá "' . $_POST['search'] . '"';
 }
 
@@ -71,108 +71,30 @@ if ($posts) {
                             <strong><?php echo $pageTitle; ?></strong>
                         </p>
                     </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                    <?php if (count($posts) > 0) : ?>
+                        <?php foreach ($posts as $post) : ?>
+                            <div class="col-4">
+                                <div class="card mb-3">
+                                    <div class="card-img-box">
+                                        <img src="<?php echo $post['image'] ?>" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
+                                    </div>
+                                    <div class="card-body">
+                                        <small><?php echo $post['category_name'] ?></small>
+                                        <h5 class="card-title">
+                                            <a href="post.php?id=<?php echo $post['id'] ?>" style="color: var(--main-color);">
+                                                <?php echo $post['title'] ?>
+                                            </a>
+                                        </h5>
+                                        <p class="card-text">
+                                            <?php echo $post['subtitle'] ?>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card mb-3">
-                            <div class="card-img-box">
-                                <img src="./public/images/1.jpg" class="card-img-top" width="100%" height="100%" style="object-fit: cover;" alt="ảnh">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="post.php" style="color: var(--main-color);">
-                                        Card title
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <p class="pb-5">Không có bài viết</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

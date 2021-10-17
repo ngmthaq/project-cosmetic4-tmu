@@ -5,6 +5,12 @@
 
 $site = 'index';
 
+$sql = "SELECT posts.*, categories.name FROM posts INNER JOIN categories
+    ON posts.category_id = categories.id
+    ORDER BY created_at DESC LIMIT 4";
+$posts = $conn->query($sql);
+$posts = $posts->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -55,50 +61,29 @@ $site = 'index';
                     <div class="col-12">
                         <h5 class="text-center py-3">BÀI VIẾT MỚI</h5>
                     </div>
-                    <div class="col-6 mb-3">
-                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
-                            <div class="post-content">
-                                <p class="category-name">
-                                    BÀI VIẾT
-                                </p>
-                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="post.php">Xem bài viết</a>
+                    <?php if (count($posts) > 0) : ?>
+                        <?php foreach ($posts as $post) : ?>
+                            <div class="col-6 mb-3">
+                                <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?php echo $post['image'] ?>);">
+                                    <div class="post-content">
+                                        <p class="category-name">
+                                            <?php echo $post['name'] ?>
+                                        </p>
+                                        <h5 class="text">
+                                            <a href="post.php?id=<?php echo $post['id'] ?>" class="border-0">
+                                                <?php echo $post['title'] ?>
+                                            </a>
+                                        </h5>
+                                        <a href="post.php?id=<?php echo $post['id'] ?>">Xem bài viết</a>
+                                    </div>
+                                </div>
                             </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="col-12">
+                            <p>Không có bài viết</p>
                         </div>
-                    </div>
-                    <div class="col-6 mb-3">
-                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
-                            <div class="post-content">
-                                <p class="category-name">
-                                    BÀI VIẾT
-                                </p>
-                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="post.php">Xem bài viết</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-3">
-                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
-                            <div class="post-content">
-                                <p class="category-name">
-                                    BÀI VIẾT
-                                </p>
-                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="post.php">Xem bài viết</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-3">
-                        <div class="post post-md" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./public/images/body.jpg);">
-                            <div class="post-content">
-                                <p class="category-name">
-                                    BÀI VIẾT
-                                </p>
-                                <h5 class="text">HƯỚNG DẪN CHĂM SÓC SỨC KHOẺ LÀN DA CỦA BẠN</h5>
-                                <a href="post.php">Xem bài viết</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
                 <?php require_once('./layouts/_about.php') ?>
                 <?php require_once('./layouts/_contact.php') ?>

@@ -1,6 +1,26 @@
 <!-- Liên kết file cài đặt để kết nối đến database -->
 <?php require_once('./config.php') ?>
 
+<?php
+
+// Kiểm tra id bài viết
+$id = $_GET['id'] ?? null;
+
+// Nếu có id
+if ($id) {
+    // Lấy thông tin bài viết
+    $sql = 'SELECT `posts`.*, `categories`.`name` AS `category_name`, `users`.`name` AS `user_name` FROM `posts` 
+    INNER JOIN `categories` ON `posts`.`category_id` = `categories`.`id`
+    INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` WHERE posts.id = ' . $id;
+    $post = $conn->query($sql);
+    $post = $post->fetch_assoc();
+} else {
+    // Nếu ko thì chuyển hướng về trang tất cả bài viết
+    header('location: posts.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,66 +48,18 @@
                     <div class="col-9">
                         <div class="py-3">
                             <h4 class="pt-3 pb-2">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                <?php echo $post['title'] ?>
                             </h4>
-                            <div class="pb-3">
-                                <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%2Fproject%2Fbeauty%2Fpost.php&layout=button_count&size=small&width=86&height=20&appId" 
-                                    width="86" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
-                                    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                                </iframe>
-                            </div>
                             <p class="pb-3">
                                 <i>
                                     <strong>
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                        Nulla, ducimus. Ut, ipsam eligendi labore iste,
-                                        pariatur et atque tempora veniam,
-                                        soluta cupiditate minima voluptatum alias odit exercitationem totam cumque officiis.
+                                        <?php echo $post['subtitle'] ?>
                                     </strong>
                                 </i>
                             </p>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Impedit dignissimos culpa ut autem sunt voluptate,
-                                quos odio saepe maxime quas quis, optio alias excepturi!
-                                Cupiditate laborum vitae eum molestiae nostrum.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Impedit dignissimos culpa ut autem sunt voluptate,
-                                quos odio saepe maxime quas quis, optio alias excepturi!
-                                Cupiditate laborum vitae eum molestiae nostrum.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Impedit dignissimos culpa ut autem sunt voluptate,
-                                quos odio saepe maxime quas quis, optio alias excepturi!
-                                Cupiditate laborum vitae eum molestiae nostrum.
-                            </p>
-                            <div class="text-center py-3">
-                                <img src="./public/images/1.jpg" alt="Ảnh">
+                            <div>
+                                <?php echo $post['main_paragraph'] ?>
                             </div>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Hic dolor modi, sit eligendi quia laboriosam suscipit ipsam minus,
-                                labore officia pariatur rem similique earum architecto quibusdam,
-                                accusantium eaque voluptatem. Repudiandae!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Hic dolor modi, sit eligendi quia laboriosam suscipit ipsam minus,
-                                labore officia pariatur rem similique earum architecto quibusdam,
-                                accusantium eaque voluptatem. Repudiandae!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Hic dolor modi, sit eligendi quia laboriosam suscipit ipsam minus,
-                                labore officia pariatur rem similique earum architecto quibusdam,
-                                accusantium eaque voluptatem. Repudiandae!
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repudiandae, quis consectetur hic voluptate ex quo dolor velit aliquam,
-                                dolore asperiores in alias incidunt deleniti odio reiciendis nobis sequi aspernatur et.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repudiandae, quis consectetur hic voluptate ex quo dolor velit aliquam,
-                                dolore asperiores in alias incidunt deleniti odio reiciendis nobis sequi aspernatur et.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repudiandae, quis consectetur hic voluptate ex quo dolor velit aliquam,
-                                dolore asperiores in alias incidunt deleniti odio reiciendis nobis sequi aspernatur et.
-                            </p>
                         </div>
                     </div>
                     <div class="col-3">
