@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 06, 2021 lúc 03:15 PM
+-- Thời gian đã tạo: Th10 28, 2021 lúc 04:08 PM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 8.0.2
 
@@ -52,10 +52,8 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `subtitle` text NOT NULL,
-  `first_paragraph` text NOT NULL,
   `image` text NOT NULL,
   `main_paragraph` text NOT NULL,
-  `last_paragraph` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -65,8 +63,9 @@ CREATE TABLE `posts` (
 -- Đang đổ dữ liệu cho bảng `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `subtitle`, `first_paragraph`, `image`, `main_paragraph`, `last_paragraph`, `user_id`, `category_id`, `created_at`) VALUES
-(1, 'test', 'test', 'test', 'nofile', 'test', 'test', 1, 2, '2021-09-30 01:35:16');
+INSERT INTO `posts` (`id`, `title`, `subtitle`, `image`, `main_paragraph`, `user_id`, `category_id`, `created_at`) VALUES
+(1, 'Lorem ipsum, dolor sit amet consectetur adipisicingggggggf', 'LLLorem ipsum, dolor sit amet consectetur adipisicing elit. Id veritatis culpa ut sint. Molestias, numquam illum accusamus qui incidunt inventore dolor asperiores voluptatem natus nostrum facilis laboriosam earum praesentium eveniet!g', 'https://media-cdn.laodong.vn/storage/newsportal/2021/3/24/892486/Rose-Blackpink-Sinh-.jpg', '<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id veritatis culpa ut sint. Molestias, numquam illum accusamus qui incidunt inventore dolor asperiores voluptatem natus nostrum facilis laboriosam earum praesentium eveniet!gghh</p>\r\n\r\n<p><input alt=\"\" src=\"https://media-cdn.laodong.vn/storage/newsportal/2021/3/24/892486/Rose-Blackpink-Sinh-.jpg\" style=\"width: 720px; height: 539px;\" type=\"image\" /></p>\r\n', 1, 3, '2021-09-30 01:35:16'),
+(2, 'Lorem ipsum, dolor sit amet consectetur adipisicing', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id veritatis culpa ut sint. Molestias, numquam illum accusamus qui incidunt inventore dolor asperiores voluptatem natus nostrum facilis laboriosam earum praesentium eveniet!', 'https://thongtinkpop.info/wp-content/uploads/2021/03/Jisoo-profile.jpg', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id veritatis culpa ut sint. Molestias, numquam illum accusamus qui incidunt inventore dolor asperiores voluptatem natus nostrum facilis laboriosam earum praesentium eveniet!', 1, 1, '2021-09-30 01:35:16');
 
 -- --------------------------------------------------------
 
@@ -126,7 +125,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

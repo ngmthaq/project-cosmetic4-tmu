@@ -1,6 +1,6 @@
 <?php
 
-// Câu lệnh sql lấy dữ liệu
+// Câu lệnh sql lấy dữ liệu từ bảng categories
 $sql = "SELECT * FROM categories";
 
 // Thực hiện câu lệnh sql và gán giá trị vào biến $categories
